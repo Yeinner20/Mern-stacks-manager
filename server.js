@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 
-const app = express();
+const app =  express();  //forzando el arranque
 
 // Middlewares (Permiten leer JSON y conexiones externas)
 app.use(cors());
