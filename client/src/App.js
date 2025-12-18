@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
+const API_URL = "https://mern-api-yeinner.onrender.com";
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState('');
@@ -15,7 +17,7 @@ function App() {
   }, []);
 
   const fetchTasks = async () => {
-    const res = await axios.get('/api/tasks');
+    const res = await axios.get(API_URL);
     setTasks(res.data);
   };
 
@@ -23,12 +25,12 @@ function App() {
     e.preventDefault();
     if (editing) {
       // Si estamos editando, usamos PUT
-      await axios.put(`/api/tasks/${id}`, { title, description });
+      await axios.put(`${API_URL}/${id}`, { title, description });
       setEditing(false);
       setId('');
     } else {
       // Si no, creamos nueva tarea con POST
-      await axios.post('/api/tasks', { title, description });
+      await axios.post(API_URL, { title, description });
     }
     // Limpiar y recargar
     setTitle('');
@@ -38,7 +40,7 @@ function App() {
 
   const deleteTask = async (id) => {
     if(window.confirm('¿Eliminar tarea?')) {
-        await axios.delete(`/api/tasks/${id}`);
+       await axios.delete(`${API_URL}/${id}`);
         fetchTasks();
     }
   };
