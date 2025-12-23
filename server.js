@@ -11,7 +11,6 @@ app.use(cors());
 app.use(express.json());
 
 // Conexión a MongoDB (Usaremos una local por ahora para facilitar)
-// Si tienes MongoDB Compass instalado, usa esta url. Si no, avísame para usar Atlas (nube).
 const URI = process.env.MONGO_URI || 'mongodb://localhost/mern-tasks';
 
 mongoose.connect(URI)
